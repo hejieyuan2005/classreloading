@@ -43,11 +43,10 @@ public class JarReloading {
         }
     }
 
-    private static Object createContext() {//
+    private static void createContext() {//
        contextClass = new DynamicClassLoader("target/classes/testJar-1.0.jar")
                 .load("cmbchina.example.relfect.invokejar.Context");
         context = ReflectUtil.newInstance(contextClass);
-        return context;
     }
 
     private static void invokeInit() {
