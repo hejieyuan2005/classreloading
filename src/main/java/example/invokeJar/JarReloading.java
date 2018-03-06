@@ -17,9 +17,12 @@ public class JarReloading {
     static Object context = null;
     public static void main(String[] args) throws Exception {
         ReloadContext();
-        contextClass = null;
+        //释放资源句柄，启动 JVM 垃圾回收机制
+        contextClass = null; // 类加载器会缓存加载的类
         context = null;
         ThreadUtil.sleep(100);
+
+        //更新 JAR 包，在线升级
         File source = new File("target/classes/testJar-1.1.jar");
         File dest = new File("target/classes/testJar-1.0.jar");
         if (dest.exists()) {
